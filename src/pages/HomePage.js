@@ -7,8 +7,10 @@ function HomePage() {
 
   let currentDate = new Date();
 
-  const calculateAge = (event) => {
-    let birthDate = new Date(event.target.value);
+  const calculateAge = (e) => {
+    e.preventDefault();
+
+    let birthDate = new Date(e.target[0].value);
 
     function millisecsToWeeks(millisecs) {
       let result = Math.floor(millisecs / 604800000);

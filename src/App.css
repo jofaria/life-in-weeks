@@ -40,11 +40,13 @@
 input {
   margin: 20px 0 50px 0;
 }
+
 p {
   margin: 0;
 }
 
 span {
+  font-size: 10px;
   width: 20px;
   margin-right: 2%;
 }

@@ -3,8 +3,8 @@ function Calendar({ ageInWeeks }) {
   const oneYear = [];
   const years = 99;
   const weeks = 52;
-  const blackSquare = "▣";
-  const whiteSquare = "□";
+  const blackSquare = "▪";
+  const whiteSquare = "▫";
 
   console.log(ageInWeeks);
 
@@ -25,8 +25,6 @@ function Calendar({ ageInWeeks }) {
       for (let j = 0; j <= years; j++) {
         grid.push(oneYear);
       }
-      console.log("oneYear", oneYear);
-      console.log("grid", grid);
     }
   }
 
