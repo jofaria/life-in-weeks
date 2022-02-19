@@ -3,8 +3,8 @@ function Calendar({ ageInWeeks }) {
   const oneYear = [];
   const years = 99;
   const weeks = 52;
-  const blackSquare = "▪";
-  const whiteSquare = "▫";
+  const blackSquare = "■";
+  const whiteSquare = "▢";
 
   console.log(ageInWeeks);
 
@@ -39,13 +39,16 @@ function Calendar({ ageInWeeks }) {
   return (
     <>
       <h6>Weeks</h6>
-      {grid.map((el, i) => {
-        return (
-          <p key={i}>
-            <span>{i}.</span> {el}
-          </p>
-        );
-      })}
+      <div className="calendar-container">
+        {grid.map((el, i) => {
+          return (
+            <p key={i} className="year-row">
+              <span className="year-number">{i}.</span>
+              <span className="year-array">{el}</span>
+            </p>
+          );
+        })}
+      </div>
     </>
   );
 }
