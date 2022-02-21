@@ -18,9 +18,7 @@ function HomePage() {
     }
 
     const milliseconds = currentDate - birthDate;
-    console.log(milliseconds);
     let weeksOld = millisecsToWeeks(milliseconds);
-    console.log(weeksOld);
 
     setAgeInWeeks(weeksOld);
   };

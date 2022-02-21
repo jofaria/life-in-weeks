@@ -1,34 +1,63 @@
 function Calendar({ ageInWeeks }) {
   const grid = [];
-  const oneYear = [];
-  const years = 99;
-  const weeks = 52;
+  const lifeExpectancy = 99;
+  let weeksInYear = 52;
+  let oneYear = [];
+
+  let yearsLived = ageInWeeks / weeksInYear;
+  //let roundedYearsLived = Math.floor(yearsLived);
+  console.log("yearsLived", yearsLived);
+  let decimal = yearsLived - Math.floor(yearsLived);
+  console.log("decimal", decimal);
+  let remainingWeeks = Math.floor(decimal * weeksInYear);
+  console.log("remainingWeeks", remainingWeeks);
+  let unlivedWeeks = weeksInYear - remainingWeeks;
+
   const blackSquare = "■";
   const whiteSquare = "▢";
-
-  console.log(ageInWeeks);
+  console.log("age in weeks in calendar", ageInWeeks);
 
   function createGrid() {
     if (ageInWeeks) {
-      // add black squares to each year lived
-      for (let i = 0; i < weeks; i++) {
-        oneYear.push(blackSquare);
-      }
-      // add each lived year to the grid
-      for (let j = 0; j <= ageInWeeks / 52; j++) {
+      // If less than one year old
+      if (ageInWeeks < weeksInYear) {
+        remainingWeeks = weeksInYear - ageInWeeks;
+        oneYear.push([
+          blackSquare.repeat(ageInWeeks),
+          whiteSquare.repeat(remainingWeeks),
+        ]);
+
         grid.push(oneYear);
       }
-      // add remaining unlived years to the grid
-      for (let k = grid.length; k <= years; k++) {
+      // if more than one year old
+      else {
+        // Add 52 black squares to a year
+        for (let i = 0; i < weeksInYear; i++) {
+          oneYear.push(blackSquare);
+        }
+
+        // add years lived to the grid
+        for (let j = 1; j < yearsLived - 1; j++) {
+          grid.push(oneYear);
+        }
+
+        // add year with unfinished weeks
+        grid.push([
+          blackSquare.repeat(remainingWeeks),
+          whiteSquare.repeat(unlivedWeeks),
+        ]);
+      }
+      // add all the remaining unlived year
+      for (let k = grid.length; k < lifeExpectancy; k++) {
         grid.push([whiteSquare.repeat(52)]);
       }
     } else {
       // start out with all white squares per year
-      for (let i = 0; i < weeks; i++) {
+      for (let i = 0; i < weeksInYear; i++) {
         oneYear.push(whiteSquare);
       }
       // start out with all 99 years in grid
-      for (let j = 0; j <= years; j++) {
+      for (let j = 0; j <= lifeExpectancy; j++) {
         grid.push(oneYear);
       }
     }
@@ -43,7 +72,7 @@ function Calendar({ ageInWeeks }) {
         {grid.map((el, i) => {
           return (
             <p key={i} className="year-row">
-              <span className="year-number">{i}.</span>
+              <span className="year-number">{i + 1}.</span>
               <span className="year-array">{el}</span>
             </p>
           );
