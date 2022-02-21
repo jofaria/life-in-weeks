@@ -3,16 +3,10 @@ function Calendar({ ageInWeeks }) {
   const lifeExpectancy = 100;
   let weeksInYear = 52;
   let oneYear = [];
-
   let yearsLived = ageInWeeks / weeksInYear;
-  //let roundedYearsLived = Math.floor(yearsLived);
   let decimal = yearsLived - Math.floor(yearsLived);
-
-  // this one is thw problem
   let remainingWeeks = Math.round(decimal * weeksInYear);
-  console.log("remainingWeeks", remainingWeeks);
   let unlivedWeeks = weeksInYear - remainingWeeks;
-
   const blackSquare = "■";
   const whiteSquare = "▢";
 
@@ -30,7 +24,7 @@ function Calendar({ ageInWeeks }) {
       }
       // if more than one year old
       else {
-        // Add 52 black squares to a year
+        // Add 52 black squares per year
         for (let i = 0; i < weeksInYear; i++) {
           oneYear.push(blackSquare);
         }
@@ -40,7 +34,7 @@ function Calendar({ ageInWeeks }) {
           grid.push(oneYear);
         }
 
-        // add year with unfinished weeks
+        // add unfinished year
         grid.push([
           blackSquare.repeat(remainingWeeks),
           whiteSquare.repeat(unlivedWeeks),
@@ -55,7 +49,7 @@ function Calendar({ ageInWeeks }) {
       for (let i = 0; i < weeksInYear; i++) {
         oneYear.push(whiteSquare);
       }
-      // start out with all 99 years in grid
+      // start out with all 100 years in grid
       for (let j = 0; j <= lifeExpectancy; j++) {
         grid.push(oneYear);
       }
