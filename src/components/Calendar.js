@@ -20,7 +20,7 @@ function Calendar({ ageInWeeks }) {
   function createGrid() {
     if (ageInWeeks) {
       // If less than one year old
-      if (ageInWeeks < weeksInYear) {
+      if (ageInWeeks <= weeksInYear) {
         remainingWeeks = weeksInYear - ageInWeeks;
         oneYear.push([
           blackSquare.repeat(ageInWeeks),
@@ -37,7 +37,7 @@ function Calendar({ ageInWeeks }) {
         }
 
         // add years lived to the grid
-        for (let j = 1; j < yearsLived - 1; j++) {
+        for (let j = 1; j < yearsLived; j++) {
           grid.push(oneYear);
         }
 
@@ -72,7 +72,7 @@ function Calendar({ ageInWeeks }) {
         {grid.map((el, i) => {
           return (
             <p key={i} className="year-row">
-              <span className="year-number">{i + 1}.</span>
+              <span className="year-number">{i}.</span>
               <span className="year-array">{el}</span>
             </p>
           );
