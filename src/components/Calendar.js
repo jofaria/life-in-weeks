@@ -1,21 +1,20 @@
 function Calendar({ ageInWeeks }) {
   const grid = [];
-  const lifeExpectancy = 99;
+  const lifeExpectancy = 100;
   let weeksInYear = 52;
   let oneYear = [];
 
   let yearsLived = ageInWeeks / weeksInYear;
   //let roundedYearsLived = Math.floor(yearsLived);
-  console.log("yearsLived", yearsLived);
   let decimal = yearsLived - Math.floor(yearsLived);
-  console.log("decimal", decimal);
-  let remainingWeeks = Math.floor(decimal * weeksInYear);
+
+  // this one is thw problem
+  let remainingWeeks = Math.round(decimal * weeksInYear);
   console.log("remainingWeeks", remainingWeeks);
   let unlivedWeeks = weeksInYear - remainingWeeks;
 
   const blackSquare = "■";
   const whiteSquare = "▢";
-  console.log("age in weeks in calendar", ageInWeeks);
 
   function createGrid() {
     if (ageInWeeks) {
